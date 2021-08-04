@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Checkbox, Pagination} from 'antd';
+import { Form, Input, Button, Checkbox, Pagination, Collapse, DatePicker, Space } from 'antd';
+const { Panel } = Collapse
+const { RangePicker } = DatePicker
 
 const onFinish = (values: any) => {
   console.log('Success:', values)
@@ -8,6 +10,16 @@ const onFinish = (values: any) => {
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo)
 }
+
+function DateTimePickeMethod(dates: any, dateString: Array<string>){
+  console.log(dates,dateString)
+}
+
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`
 
 export default class FormTable extends Component {
   constructor(props: any){
@@ -20,6 +32,20 @@ export default class FormTable extends Component {
   render() {
     return (
       <React.Fragment>
+        <Space direction="vertical" size={12}>
+          <RangePicker showTime onChange={DateTimePickeMethod} />
+        </Space>
+        <Collapse accordion>
+          <Panel header="This is panel header 1" key="1">
+            <p>{text}</p>
+          </Panel>
+          <Panel header="This is panel header 2" key="2">
+            <p>{text}</p>
+          </Panel>
+          <Panel header="This is panel header 3" key="3">
+            <p>{text}</p>
+          </Panel>
+        </Collapse>
         <Form
           name="basic"
           labelCol={{ span: 8 }}
